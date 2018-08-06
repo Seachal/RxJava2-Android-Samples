@@ -73,6 +73,15 @@ public class ZipExampleActivity extends AppCompatActivity {
             @Override
             public void subscribe(ObservableEmitter<List<User>> e) throws Exception {
                 if (!e.isDisposed()) {
+                    /*
+                       User userOne = new User();
+        userOne.id = 1;
+        userOne.firstname = "Amit";
+        userOne.lastname = "Shekhar";
+        userTwo.id = 2;
+        userTwo.firstname = "Manish";
+        userTwo.lastname = "Kumar";
+                     */
                     e.onNext(Utils.getUserListWhoLovesCricket());
                     e.onComplete();
                 }
@@ -85,6 +94,15 @@ public class ZipExampleActivity extends AppCompatActivity {
             @Override
             public void subscribe(ObservableEmitter<List<User>> e) throws Exception {
                 if (!e.isDisposed()) {
+                    /**
+                     userOne.id = 1;
+                     userOne.firstname = "Amit";
+                     userOne.lastname = "Shekhar";
+                     User userTwo = new User();
+                     userTwo.id = 3;
+                     userTwo.firstname = "Sumit";
+                     userTwo.lastname = "Kumar";
+                     */
                     e.onNext(Utils.getUserListWhoLovesFootball());
                     e.onComplete();
                 }
@@ -103,6 +121,8 @@ public class ZipExampleActivity extends AppCompatActivity {
             @Override
             public void onNext(List<User> userList) {
                 textView.append(" onNext");
+                textView.append(AppConstant.LINE_SEPARATOR);
+                textView.append(" userList.size : " + userList.size());
                 textView.append(AppConstant.LINE_SEPARATOR);
                 for (User user : userList) {
                     textView.append(" firstname : " + user.firstname);

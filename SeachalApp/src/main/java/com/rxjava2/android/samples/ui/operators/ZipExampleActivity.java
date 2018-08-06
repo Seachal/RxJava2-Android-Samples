@@ -58,6 +58,8 @@ public class ZipExampleActivity extends AppCompatActivity {
                 new BiFunction<List<User>, List<User>, List<User>>() {
                     @Override
                     public List<User> apply(List<User> cricketFans, List<User> footballFans) throws Exception {
+//                      filterUserWhoLovesBoth是输出，怎么感觉这是手工压合啊，
+//                        难道是， zip 就是限定了，输入源和输出源个数，  中间怎样处理数据，需要开发者自己处理
                         return Utils.filterUserWhoLovesBoth(cricketFans, footballFans);
                     }
                 })

@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <Button
+            android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="startOperatorsActivity"
@@ -23,6 +24,7 @@
             android:textColor="@android:color/black" />
 
         <Button
+            android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="startNetworkingActivity"
@@ -30,6 +32,7 @@
             android:textColor="@android:color/black" />
 
         <Button
+            android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="startRxBusActivity"
@@ -37,6 +40,7 @@
             android:textColor="@android:color/black" />
 
         <Button
+            android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="startPaginationActivity"
@@ -44,6 +48,7 @@
             android:textColor="@android:color/black" />
 
         <Button
+            android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="startComposeOperator"
@@ -51,6 +56,7 @@
             android:textColor="@android:color/black" />
 
         <Button
+            android:textAllCaps="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="startSearchActivity"

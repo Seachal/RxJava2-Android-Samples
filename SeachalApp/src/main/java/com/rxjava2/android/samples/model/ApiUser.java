@@ -16,4 +16,5 @@ public class ApiUser {
                 ", lastname='" + lastname + '\'' +
                 '}';
     }
+
 }
