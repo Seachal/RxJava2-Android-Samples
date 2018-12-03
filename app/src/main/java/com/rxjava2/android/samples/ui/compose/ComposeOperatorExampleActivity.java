@@ -8,6 +8,9 @@ import com.rxjava2.android.samples.R;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
+/**
+ * 组合操作符的例子
+ */
 public class ComposeOperatorExampleActivity extends AppCompatActivity {
 
     private RxSchedulers schedulers = new RxSchedulers();

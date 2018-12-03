@@ -43,6 +43,8 @@ public class MergeExampleActivity extends AppCompatActivity {
      * the order of Observable.
      * It will emit all the 7 values may not be in order
      * Ex - "A1", "B1", "A2", "A3", "A4", "B2", "B3" - may be anything
+     *
+     * 使用合并运算符组合可观测性：合并不能维持可观测的顺序。它将发出所有的7个值，可能不是ex-“a1”、“B1”、“a2”、“a3”、“a4”、“b2”、“b3”-可能是任何东西。
      */
     private void doSomeWork() {
         final String[] aStrings = {"A1", "A2", "A3", "A4"};

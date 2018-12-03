@@ -52,6 +52,10 @@ public class SimpleExampleActivity extends AppCompatActivity {
                 .subscribe(getObserver());
     }
 
+    /**
+     * 一个一个的发射
+     * @return
+     */
     private Observable<String> getObservable() {
         return Observable.just("Cricket", "Football");
     }

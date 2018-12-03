@@ -53,6 +53,11 @@ public class MapExampleActivity extends AppCompatActivity {
     * then we are converting it into User Object because
     * may be our database support User Not ApiUser Object
     * Here we are using Map Operator to do that
+    *
+    * 这里我们从api服务器获取ApiUser对象。
+     然后我们将它转换为User对象，因为
+    可能是我们的数据库支持用户而不是ApiUser对象
+    这里我们使用Map运算符来做这个
     */
     private void doSomeWork() {
         getObservable()

@@ -52,6 +52,9 @@ public class ZipExampleActivity extends AppCompatActivity {
     * One, the list of cricket fans
     * Another one, the list of football fans
     * Then we are finding the list of users who loves both
+    *
+    * 这里我们有两个用户列表，一个是板球球迷的列表，另一个是足球迷的列表，
+    * 然后我们找到了同时喜欢这两种功能的用户列表
     */
     private void doSomeWork() {
         Observable.zip(getCricketFansObservable(), getFootballFansObservable(),

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
+import android.widget.TextView;
 
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 import com.rxjava2.android.samples.R;
@@ -34,10 +35,14 @@ public class NetworkingActivity extends AppCompatActivity {
 
     public static final String TAG = NetworkingActivity.class.getSimpleName();
 
+    private TextView  tv_result;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_networking);
+        tv_result = findViewById(R.id.tv_result);
     }
 
     /**
@@ -68,6 +73,8 @@ public class NetworkingActivity extends AppCompatActivity {
                     @Override
                     public void onNext(User user) {
                         Log.d(TAG, "user : " + user.toString());
+                        tv_result.setText(user.toString());
+
                     }
 
                     @Override
@@ -136,6 +143,8 @@ public class NetworkingActivity extends AppCompatActivity {
                         for (User user : users) {
                             Log.d(TAG, "user : " + user.toString());
                         }
+                        tv_result.setText("请看log");
+
                     }
 
                     @Override
@@ -206,6 +215,7 @@ public class NetworkingActivity extends AppCompatActivity {
                     public void onNext(User user) {
                         // only the user who is following me comes here one by one
                         Log.d(TAG, "user : " + user.toString());
+                        tv_result.setText(user.toString());
                     }
 
                     @Override
@@ -246,6 +256,7 @@ public class NetworkingActivity extends AppCompatActivity {
                     public void onNext(User user) {
                         // // only four user comes here one by one
                         Log.d(TAG, "user : " + user.toString());
+                        tv_result.setText(user.toString());
                     }
 
                     @Override
@@ -299,6 +310,7 @@ public class NetworkingActivity extends AppCompatActivity {
                     public void onNext(UserDetail userDetail) {
                         // do anything with userDetail
                         Log.d(TAG, "userDetail : " + userDetail.toString());
+                        tv_result.setText(userDetail.toString());
                     }
 
                     @Override
@@ -380,6 +392,8 @@ public class NetworkingActivity extends AppCompatActivity {
                         User user = pair.second;
                         Log.d(TAG, "user : " + user.toString());
                         Log.d(TAG, "userDetail : " + userDetail.toString());
+                        tv_result.setText(user.toString());
+                        tv_result.append(userDetail.toString());
                     }
                 });
     }
