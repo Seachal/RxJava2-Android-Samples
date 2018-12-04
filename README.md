@@ -4,7 +4,7 @@
 
 [![Mindorks](https://img.shields.io/badge/mindorks-opensource-blue.svg)](https://mindorks.com/open-source-projects)
 [![Mindorks Community](https://img.shields.io/badge/join-community-blue.svg)](https://mindorks.com/join-community)
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-RxJava2%20Android%20Samples-blue.svg?style=flat)](https://android-arsenal.com/details/3/4314)
+[![Mindorks Android Store](https://img.shields.io/badge/Mindorks%20Android%20Store-RxJava2%20Android%20Samples-blue.svg?style=flat)](https://mindorks.com/android/store)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/Apache-2.0)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/amitshekhariitbhu/RxJava2-Android-Samples/blob/master/LICENSE)
 
@@ -35,11 +35,11 @@ Users switching from 1.x to 2.x have to re-organize their imports, but carefully
 
 Add this in your build.gradle
 ```groovy
-compile 'io.reactivex.rxjava2:rxjava:2.1.1'
+compile 'io.reactivex.rxjava2:rxjava:2.2.2'
 ```
 If you are using RxAndroid also, then add the following
 ```groovy
-compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+compile 'io.reactivex.rxjava2:rxandroid:2.1.0'
 ```
 
 # RxJava 2 Examples present in this sample project
@@ -82,6 +82,7 @@ RxJava1 -> RxJava2
 * `Concat` -> emit the emissions from two or more Observables without interleaving them
 * `Replay` -> ensure that all observers see the same sequence of emitted items, even if they subscribe after the Observable has begun emitting items
 * `Merge` -> combine multiple Observables into one by merging their emissions
+* `SwitchMap` -> ransform the items emitted by an Observable into Observables, and mirror those items emitted by the most-recently transformed Observable
 
 
 # Highlights of the examples :
@@ -101,6 +102,7 @@ RxJava1 -> RxJava2
 * [ConcatExampleActivity](https://github.com/amitshekhariitbhu/RxJava2-Android-Samples/blob/master/app/src/main/java/com/rxjava2/android/samples/ui/operators/ConcatExampleActivity.java) - Using `concat` Operator
 * [MergeExampleActivity](https://github.com/amitshekhariitbhu/RxJava2-Android-Samples/blob/master/app/src/main/java/com/rxjava2/android/samples/ui/operators/MergeExampleActivity.java) - Using `merge` Operator
 * [DeferExampleActivity](https://github.com/amitshekhariitbhu/RxJava2-Android-Samples/blob/master/app/src/main/java/com/rxjava2/android/samples/ui/operators/DeferExampleActivity.java) - Using `defer` Observable
+* [SwitchMapExampleActivity](https://github.com/amitshekhariitbhu/RxJava2-Android-Samples/blob/master/app/src/main/java/com/rxjava2/android/samples/ui/operators/SwitchMapExampleActivity.java) - Using `switchMap` Observable
 * [IntervalExampleActivity](https://github.com/amitshekhariitbhu/RxJava2-Android-Samples/blob/master/app/src/main/java/com/rxjava2/android/samples/ui/operators/IntervalExampleActivity.java) - Using `Interval`
 * [RxBusActivity](https://github.com/amitshekhariitbhu/RxJava2-Android-Samples/blob/master/app/src/main/java/com/rxjava2/android/samples/ui/rxbus/RxBusActivity.java) - RxBus, RxJava2Bus, EventBus, RxEventBus, [Blog for reference](https://blog.mindorks.com/implementing-eventbus-with-rxjava-rxbus-e6c940a94bd8)
 * [PaginationActivity](https://github.com/amitshekhariitbhu/RxJava2-Android-Samples/blob/master/app/src/main/java/com/rxjava2/android/samples/ui/pagination/PaginationActivity.java) - Pagination for loadMore in RecyclerView
