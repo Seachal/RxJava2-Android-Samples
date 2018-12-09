@@ -14,7 +14,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
 
-        <Button
+        <Button             android:textAllCaps="false"
             android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -23,7 +23,7 @@
             android:text="@string/map"
             android:textAllCaps="false"/>
 
-        <Button
+        <Button             android:textAllCaps="false"
             android:id="@+id/zip"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -31,7 +31,7 @@
             android:onClick="zip"
             android:text="@string/zip"/>
 
-        <Button
+        <Button             android:textAllCaps="false"
             android:id="@+id/flatMapAndFilter"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -40,7 +40,7 @@
             android:text="@string/flatMapAndFilter"
             android:textAllCaps="false"/>
 
-        <Button
+        <Button             android:textAllCaps="false"
             android:id="@+id/take"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -49,7 +49,7 @@
             android:text="@string/take"
             android:textAllCaps="false"/>
 
-        <Button
+        <Button             android:textAllCaps="false"
             android:id="@+id/flatMap"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -58,7 +58,7 @@
             android:text="@string/flatMap"
             android:textAllCaps="false"/>
 
-        <Button
+        <Button             android:textAllCaps="false"
             android:id="@+id/flatMapWithZip"
             android:layout_width="match_parent"
             android:layout_height="48dp"
