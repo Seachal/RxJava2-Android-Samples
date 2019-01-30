@@ -72,6 +72,7 @@ public class MapExampleActivity extends AppCompatActivity {
                         return Utils.convertApiUserListToUserList(apiUsers);
                     }
                 })
+//                Observable 和 Observer 通过 subscribe() 方法实现订阅关系，从而 Observable 可以在需要的时候发出事件来通知 Observer。
                 .subscribe(getObserver());
     }
 

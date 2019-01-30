@@ -87,14 +87,14 @@ public class Utils {
 
         User userOne = new User();
         userOne.id = 1;
-        userOne.firstname = "Amit";
-        userOne.lastname = "Shekhar";
+        userOne.firstname = "Amit1Cricket";
+        userOne.lastname = "Shekhar1Cricket";
         userList.add(userOne);
 
         User userTwo = new User();
         userTwo.id = 2;
-        userTwo.firstname = "Manish";
-        userTwo.lastname = "Kumar";
+        userTwo.firstname = "Manish2Cricket";
+        userTwo.lastname = "Kumar2Cricket";
         userList.add(userTwo);
 
         return userList;
@@ -107,16 +107,27 @@ public class Utils {
 
         User userOne = new User();
         userOne.id = 1;
-        userOne.firstname = "Amit";
-        userOne.lastname = "Shekhar";
+        userOne.firstname = "Amit1Football";
+        userOne.lastname = "Shekhar1Football";
         userList.add(userOne);
 
         User userTwo = new User();
         userTwo.id = 3;
-        userTwo.firstname = "Sumit";
-        userTwo.lastname = "Kumar";
+        userTwo.firstname = "Sumit2Football";
+        userTwo.lastname = "Kumar2Football";
         userList.add(userTwo);
 
+        User userThree = new User();
+        userTwo.id = 4;
+        userTwo.firstname = "Seachal3Football";
+        userTwo.lastname = "Zhang3Football";
+        userList.add(userThree);
+
+        User userFour = new User();
+        userTwo.id = 2;
+        userTwo.firstname = "Manish2Football";
+        userTwo.lastname = "Kumar2Football";
+        userList.add(userFour);
         return userList;
     }
 

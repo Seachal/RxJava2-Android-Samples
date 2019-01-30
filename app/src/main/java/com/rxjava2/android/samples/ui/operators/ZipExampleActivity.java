@@ -48,19 +48,23 @@ public class ZipExampleActivity extends AppCompatActivity {
     }
 
     /*
-    * Here we are getting two user list
-    * One, the list of cricket fans
-    * Another one, the list of football fans
-    * Then we are finding the list of users who loves both
-    *
-    * 这里我们有两个用户列表，一个是板球球迷的列表，另一个是足球迷的列表，
-    * 然后我们找到了同时喜欢这两种功能的用户列表
-    */
+     * Here we are getting two user list
+     * One, the list of cricket fans
+     * Another one, the list of football fans
+     * Then we are finding the list of users who loves both
+     *
+     * 这里我们有两个用户列表，一个是板球球迷的列表，另一个是足球迷的列表，
+     * 然后我们找到了同时喜欢这两种功能的用户列表
+     */
     private void doSomeWork() {
         Observable.zip(getCricketFansObservable(), getFootballFansObservable(),
                 new BiFunction<List<User>, List<User>, List<User>>() {
                     @Override
                     public List<User> apply(List<User> cricketFans, List<User> footballFans) {
+                        Log.d(TAG, " zip.apply() : cricketFans " + cricketFans.size());
+                        Log.d(TAG, " zip.apply() :footballFans " + footballFans.size());
+
+                      //seachal  filter 处理后的值回被 observer的onNext 接收到，
                         return Utils.filterUserWhoLovesBoth(cricketFans, footballFans);
                     }
                 })
@@ -77,13 +81,14 @@ public class ZipExampleActivity extends AppCompatActivity {
             public void subscribe(ObservableEmitter<List<User>> e) {
                 if (!e.isDisposed()) {
                     /*
+                     * seachal
                        User userOne = new User();
-        userOne.id = 1;
-        userOne.firstname = "Amit";
-        userOne.lastname = "Shekhar";
-        userTwo.id = 2;
-        userTwo.firstname = "Manish";
-        userTwo.lastname = "Kumar";
+                        userOne.id = 1;
+                        userOne.firstname = "Amit";
+                        userOne.lastname = "Shekhar";
+                        userTwo.id = 2;
+                        userTwo.firstname = "Manish";
+                        userTwo.lastname = "Kumar";
                      */
                     e.onNext(Utils.getUserListWhoLovesCricket());
                     e.onComplete();
@@ -98,6 +103,7 @@ public class ZipExampleActivity extends AppCompatActivity {
             public void subscribe(ObservableEmitter<List<User>> e) {
                 if (!e.isDisposed()) {
                     /**
+                     * seachal
                      userOne.id = 1;
                      userOne.firstname = "Amit";
                      userOne.lastname = "Shekhar";
@@ -124,8 +130,6 @@ public class ZipExampleActivity extends AppCompatActivity {
             @Override
             public void onNext(List<User> userList) {
                 textView.append(" onNext");
-                textView.append(AppConstant.LINE_SEPARATOR);
-                textView.append(" userList.size : " + userList.size());
                 textView.append(AppConstant.LINE_SEPARATOR);
                 for (User user : userList) {
                     textView.append(" firstname : " + user.firstname);

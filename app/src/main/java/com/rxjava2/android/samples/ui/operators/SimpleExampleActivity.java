@@ -33,6 +33,7 @@ public class SimpleExampleActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
 
         btn.setOnClickListener(new View.OnClickListener() {
+           // onClick(View view)中的 view 是形参
             @Override
             public void onClick(View view) {
                 doSomeWork();

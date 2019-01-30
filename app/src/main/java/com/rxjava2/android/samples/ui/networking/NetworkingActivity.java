@@ -11,6 +11,7 @@ import com.rxjava2.android.samples.R;
 import com.rxjava2.android.samples.model.ApiUser;
 import com.rxjava2.android.samples.model.User;
 import com.rxjava2.android.samples.model.UserDetail;
+import com.rxjava2.android.samples.utils.AppConstant;
 import com.rxjava2.android.samples.utils.Utils;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class NetworkingActivity extends AppCompatActivity {
 
     public static final String TAG = NetworkingActivity.class.getSimpleName();
 
-    private TextView  tv_result;
+    private TextView tv_result;
 
 
     @Override
@@ -49,8 +50,9 @@ public class NetworkingActivity extends AppCompatActivity {
      * Map Operator Example
      */
     public void map(View view) {
+// 打印完整 URL  完整的网络请求： https://fierce-cove-29863.herokuapp.com/getAnUser/1
         Rx2AndroidNetworking.get("https://fierce-cove-29863.herokuapp.com/getAnUser/{userId}")
-                .addPathParameter("userId", "1")
+                .addPathParameter("userId", "2")
                 .build()
                 .getObjectObservable(ApiUser.class)
                 .subscribeOn(Schedulers.io())
@@ -58,6 +60,7 @@ public class NetworkingActivity extends AppCompatActivity {
                 .map(new Function<ApiUser, User>() {
                     @Override
                     public User apply(ApiUser apiUser) {
+//                      Seachal annotation:  把从网络取得apiUser加工城 user，再return，发送出去
                         // here we get ApiUser from server
                         User user = new User(apiUser);
                         // then by converting, we are returning user
@@ -67,24 +70,27 @@ public class NetworkingActivity extends AppCompatActivity {
                 .subscribe(new Observer<User>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        tv_result.clearComposingText();
+                        tv_result.append("onSubscribe()"+"\n");
                     }
 
                     @Override
                     public void onNext(User user) {
                         Log.d(TAG, "user : " + user.toString());
-                        tv_result.setText(user.toString());
+                        tv_result.append("onNext() user : " + user.toString() + "\n");
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Utils.logError(TAG, e);
+                        tv_result.append("onError()"+"\n");
                     }
 
                     @Override
                     public void onComplete() {
                         Log.d(TAG, "onComplete");
+                        tv_result.append("onComplete()"+"\n");
                     }
                 });
     }
@@ -96,6 +102,8 @@ public class NetworkingActivity extends AppCompatActivity {
 
     /**
      * This observable return the list of User who loves cricket
+     * <p>
+     * size 5
      */
     private Observable<List<User>> getCricketFansObservable() {
         return Rx2AndroidNetworking.get("https://fierce-cove-29863.herokuapp.com/getAllCricketFans")
@@ -104,8 +112,9 @@ public class NetworkingActivity extends AppCompatActivity {
     }
 
     /*
-    * This observable return the list of User who loves Football
-    */
+     * This observable return the list of User who loves Football
+     * size 5
+     */
     private Observable<List<User>> getFootballFansObservable() {
         return Rx2AndroidNetworking.get("https://fierce-cove-29863.herokuapp.com/getAllFootballFans")
                 .build()
@@ -113,16 +122,21 @@ public class NetworkingActivity extends AppCompatActivity {
     }
 
     /*
-    * This do the complete magic, make both network call
-    * and then returns the list of user who loves both
-    * Using zip operator to get both response at a time
-    */
+     * This do the complete magic, make both network call
+     * and then returns the list of user who loves both
+     * Using zip operator to get both response at a time
+     */
     private void findUsersWhoLovesBoth() {
         // here we are using zip operator to combine both request
         Observable.zip(getCricketFansObservable(), getFootballFansObservable(),
                 new BiFunction<List<User>, List<User>, List<User>>() {
                     @Override
                     public List<User> apply(List<User> cricketFans, List<User> footballFans) {
+
+                        Log.d(TAG, " zip.apply() : cricketFans " + cricketFans.size());
+                        Log.d(TAG, " zip.apply() :footballFans " + footballFans.size());
+
+
                         List<User> userWhoLovesBoth =
                                 filterUserWhoLovesBoth(cricketFans, footballFans);
                         return userWhoLovesBoth;
@@ -179,14 +193,15 @@ public class NetworkingActivity extends AppCompatActivity {
 
     /**
      * flatMap and filter Operators Example
+     * https://fierce-cove-29863.herokuapp.com/getAllFriends/1
      */
-
     private Observable<List<User>> getAllMyFriendsObservable() {
         return Rx2AndroidNetworking.get("https://fierce-cove-29863.herokuapp.com/getAllFriends/{userId}")
                 .addPathParameter("userId", "1")
                 .build()
                 .getObjectListObservable(User.class);
     }
+
 
     public void flatMapAndFilter(View view) {
         getAllMyFriendsObservable()
@@ -216,6 +231,8 @@ public class NetworkingActivity extends AppCompatActivity {
                         // only the user who is following me comes here one by one
                         Log.d(TAG, "user : " + user.toString());
                         tv_result.setText(user.toString());
+                        tv_result.append(" onNext :user " + user.toString());
+                        tv_result.append(AppConstant.LINE_SEPARATOR);
                     }
 
                     @Override
@@ -233,8 +250,8 @@ public class NetworkingActivity extends AppCompatActivity {
 
     /**
      * take Operator Example
+     * https://fierce-cove-29863.herokuapp.com/getAllUsers/0?limit=10
      */
-
     public void take(View view) {
         getUserListObservable()
                 .flatMap(new Function<List<User>, ObservableSource<User>>() { // flatMap - to return users one by one
@@ -243,6 +260,7 @@ public class NetworkingActivity extends AppCompatActivity {
                         return Observable.fromIterable(usersList); // returning user one by one from usersList.
                     }
                 })
+//               seachal annotation 10个里面取4个
                 .take(4) // it will only emit first 4 users out of all
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -256,7 +274,8 @@ public class NetworkingActivity extends AppCompatActivity {
                     public void onNext(User user) {
                         // // only four user comes here one by one
                         Log.d(TAG, "user : " + user.toString());
-                        tv_result.setText(user.toString());
+                        tv_result.append(" onNext :user " + user.toString());
+                        tv_result.append(AppConstant.LINE_SEPARATOR);
                     }
 
                     @Override
@@ -278,15 +297,17 @@ public class NetworkingActivity extends AppCompatActivity {
 
     public void flatMap(View view) {
         getUserListObservable()
-                .flatMap(new Function<List<User>, ObservableSource<User>>() { // flatMap - to return users one by one
+                .flatMap(new Function<List<User>, ObservableSource<User>>() { // flatMap - to return users one by one ：一个接一个地返回user
                     @Override
                     public ObservableSource<User> apply(List<User> usersList) {
-                        return Observable.fromIterable(usersList); // returning user one by one from usersList.
+//
+                        return Observable.fromIterable(usersList); // returning user one by one from usersList.：从usersList逐一返回user
                     }
                 })
                 .flatMap(new Function<User, ObservableSource<UserDetail>>() {
                     @Override
                     public ObservableSource<UserDetail> apply(User user) {
+//                        在这儿，
                         // here we get the user one by one
                         // and returns corresponding getUserDetailObservable
                         // for that userId
@@ -298,24 +319,28 @@ public class NetworkingActivity extends AppCompatActivity {
                 .subscribe(new Observer<UserDetail>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        tv_result.setText("");
+                        tv_result.append(" onSubscribe()"+"\n");
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Utils.logError(TAG, e);
+                        tv_result.append(" onError()"+"\n");
+
                     }
 
                     @Override
                     public void onNext(UserDetail userDetail) {
                         // do anything with userDetail
                         Log.d(TAG, "userDetail : " + userDetail.toString());
-                        tv_result.setText(userDetail.toString());
+                        tv_result.append(" onNext() :userDetail " + userDetail.toString()+"\n");
                     }
 
                     @Override
                     public void onComplete() {
                         Log.d(TAG, "onComplete");
+                        tv_result.append(" onComplete()"+"\n");
                     }
                 });
     }
@@ -325,6 +350,7 @@ public class NetworkingActivity extends AppCompatActivity {
      */
 
     private Observable<List<User>> getUserListObservable() {
+//       seachal annotation url https://fierce-cove-29863.herokuapp.com/getAllUsers/0?limit=10
         return Rx2AndroidNetworking.get("https://fierce-cove-29863.herokuapp.com/getAllUsers/{pageNumber}")
                 .addPathParameter("pageNumber", "0")
                 .addQueryParameter("limit", "10")
